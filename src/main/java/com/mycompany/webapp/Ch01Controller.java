@@ -15,5 +15,5 @@ public class Ch01Controller {
 		logger.info("home 실행");
 		
 		return "ch01/content";
-	}
+	}	
 }
