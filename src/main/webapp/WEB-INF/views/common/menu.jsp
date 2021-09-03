@@ -42,4 +42,16 @@
 			<a class="text-white" href="${pageContext.request.contextPath}/ch07/content">Controller/Data Delivery</a>
 		</h6>
 	</li>
+	<li>
+		<h6 class="text-white">
+			<span class="mr-2">Ch08.</span> 
+			<a class="text-white" href="${pageContext.request.contextPath}/ch08/content">Controller/Session Support</a>
+		</h6>
+	</li>
+	<li>
+		<h6 class="text-white">
+			<span class="mr-2">Ch09.</span> 
+			<a class="text-white" href="${pageContext.request.contextPath}/ch09/content">Controller/FileUpload & FileDownload</a>
+		</h6>
+	</li>
 </ul>

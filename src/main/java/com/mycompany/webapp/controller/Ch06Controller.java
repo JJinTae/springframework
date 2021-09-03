@@ -47,7 +47,7 @@ public class Ch06Controller {
 	}
 	
 	@GetMapping("/getJson1")
-	public void getJson(HttpServletResponse response) throws Exception {
+	public void getJson1(HttpServletResponse response) throws Exception {
 		logger.info("실행");
 		
 		JSONObject jsonObject = new JSONObject();
