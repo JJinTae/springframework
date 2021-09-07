@@ -8,11 +8,11 @@
 	</div>
 	<div class="card-body">
 
-		<form>
+		<form method="get" action="form3">
 			<div>
 				<c:forEach var="language" items="${languageList}" varStatus="status">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" 
+					<span>
+						<input class="ml-2" type="checkbox" 
 							id="lang${status.count}" name="mlanguage" value="${language }"
 							
 							<c:forEach var="temp" items="${member.mlanguage }">
@@ -20,17 +20,26 @@
 							</c:forEach>
 							
 							>
-						<label class="form-check-label" for="lang${status.count}">${language}</label>
-					</div>
+						<label for="lang${status.count}">${language}</label>
+					</span>
 				</c:forEach>
 			</div>
+			<button class="btn btn-info btn-sm">제출</button>
 		</form>
 
-		<%-- <form:form modelAttribute="member" method="post" action="form3">
-			<div class="form-check form-check-inline">
-				<form:checkboxes items="${languageList }" path="mlanguage" cssClass="ml-2 mr-1"/>
+		<form:form modelAttribute="member" method="post" action="form3">
+			<div>
+				<form:checkboxes items="${languageList }" path="mlanguage" class="ml-2"/>
 			</div>
-		</form:form> --%>
+			<button class="btn btn-info btn-sm">제출</button>
+		</form:form>
+		
+		<form:form modelAttribute="member" method="post" action="form3">
+			<div>
+				<form:checkboxes items="${skillList }" path="mlanguage" itemValue="code" itemLabel="label" class="ml-2"/>
+			</div>
+			<button class="btn btn-info btn-sm">제출</button>
+		</form:form>
 		
 	</div>
 </div>

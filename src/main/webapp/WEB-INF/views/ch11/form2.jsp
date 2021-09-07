@@ -51,7 +51,7 @@
 		<form:form method="post" action="form2" modelAttribute="member">
 			<div class="form-group">
 				<label for="mtype">Type</label>
-				<form:select path="mtypes" items="${typeList }" class="form-control"></form:select>
+				<form:select path="mtypes" items="${typeList }" class="form-control" multiple="multiple"></form:select>
 			</div>
 			
 			<%-- Default값을 따로 정해주는 방법 --%>
