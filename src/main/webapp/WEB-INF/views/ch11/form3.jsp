@@ -36,7 +36,7 @@
 		
 		<form:form modelAttribute="member" method="post" action="form3">
 			<div>
-				<form:checkboxes items="${skillList }" path="mlanguage" itemValue="code" itemLabel="label" class="ml-2"/>
+				<form:checkboxes items="${skillList }" path="mskill" itemValue="code" itemLabel="label" class="ml-2"/>
 			</div>
 			<button class="btn btn-info btn-sm">제출</button>
 		</form:form>

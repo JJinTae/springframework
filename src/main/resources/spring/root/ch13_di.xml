@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1">
 	
+	<bean id="ch13BoardDao1" class="com.mycompany.webapp.dao.Ch13BoardDao1"></bean>
+	<!-- 생성자 주입 -->
+	<!-- <bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1">
+		<constructor-arg ref="ch13BoardDao1"/>
+	</bean> -->
+	<!-- setter 주입 -->
+	<!-- <bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1">
+		<property name="ch13BoardDao1" ref="ch13BoardDao1"/>
+	</bean> -->
+	
+	<bean id="ch13Service1" class="com.mycompany.webapp.service.Ch13Service1"
+			p:ch13BoardDao1-ref="ch13BoardDao1"/>
+		
+	
+	<!-- Properties 값 관리 설정 -->
+	<context:property-placeholder location="classpath:properties/*.properties"/>
+	
+	<!-- Properties 값 주입 -->
+	<bean id="ch13Service5" class="com.mycompany.webapp.service.Ch13Service5">
+		<constructor-arg index="0" value="${service.prop1}"/>
+		<constructor-arg index="1" value="${service.prop2}"/>
+		<property name="prop3" value="${service.prop3}"></property>
 	</bean>
-	<bean id="ch13oardDao1" class="com.mycompany.webapp.dao.Ch13BoardDao1"></bean>
-
 </beans>

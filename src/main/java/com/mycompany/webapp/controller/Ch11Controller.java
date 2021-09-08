@@ -125,7 +125,7 @@ public class Ch11Controller {
 		
 		if(member.getMlanguage() != null) {
 			for(String lang : member.getMlanguage()) {
-				logger.info("lang : " + member.getMlanguage());
+				logger.info("lang : " + Arrays.toString(member.getMlanguage()));
 			}			
 		}
 		if(member.getMskill() != null) {

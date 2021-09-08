@@ -72,4 +72,10 @@
 			<a class="text-white" href="${pageContext.request.contextPath}/ch12/content">View/BeanNameViewResolver</a>
 		</h6>
 	</li>
+	<li>
+		<h6 class="text-white">
+			<span class="mr-2">Ch13.</span> 
+			<a class="text-white" href="${pageContext.request.contextPath}/ch13/content">DI(Dependency Injection)</a>
+		</h6>
+	</li>
 </ul>
