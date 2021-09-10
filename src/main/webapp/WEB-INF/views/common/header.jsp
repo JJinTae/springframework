@@ -30,10 +30,10 @@
 			</a>
 			<div>
 				<div>
-					<c:if test="${sessionMid == null }">
+					<c:if test="${sessionMid != null }">
 						<a href="${pageContext.request.contextPath}/ch08/login" class="btn btn-success btn-sm">로그인</a>
 					</c:if>
-					<c:if test="${sessionMid != null }">
+					<c:if test="${sessionMid == null }">
 						<a href="${pageContext.request.contextPath}/ch08/logout" class="btn btn-success btn-sm">로그인</a>
 					</c:if>
 				</div>

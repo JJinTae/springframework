@@ -1,5 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -120,18 +124,38 @@ public class Ch08Controller {
 		return json;
 	}
 	
-	@GetMapping(value="/logoutAjax", produces="application/json; charset=UTF-8")
+	/*@GetMapping(value="/logoutAjax", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String logoutAjax(String mid, String mpassword, HttpSession session) {
 		logger.info("실행");
 		
-		session.invalidate();
+	//  session.invalidate();
+		session.removeAttribute("sessionMid");
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
 		
 		return json;
+	}*/
+	
+	@GetMapping(value="/logoutAjax")
+	public void logoutAjax(HttpSession session, HttpServletResponse response) throws IOException{
+		logger.info("실행");
+		
+		session.invalidate();
+		// session.removeAttribute("sessionMid");
+		
+		response.setContentType("application/json; charset=UTF-8;");
+		PrintWriter pw = response.getWriter();
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		pw.println(json);
+		pw.flush();
+		// pw.close();
 	}
 	
 	// 세션에 inputForm 이름이 존재하지 않을 경우 딱 한번만 실행 
