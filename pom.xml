@@ -147,6 +147,7 @@
 		    <version>1.4</version>
 		</dependency>
 		
+		
 		<!-- Lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -155,7 +156,15 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+		
 		<!-- JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- JDBC 보조 API-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -174,6 +183,22 @@
 		    <artifactId>ojdbc8</artifactId>
 		    <version>19.3.0.0</version>
 		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.7</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
+				
 		
 		
 		<dependency>
