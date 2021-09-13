@@ -18,7 +18,7 @@ public class Ch14MemberDao {
 
 	public void insert(Ch14Member member) {
 		sqlSessionTemplate.insert("member.insert", member);
-	}
+	} 
 
 	public Ch14Member selectByMid(String mid) {
 		return sqlSessionTemplate.selectOne("member.selectByMid", mid);
