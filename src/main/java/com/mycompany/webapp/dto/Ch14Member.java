@@ -11,5 +11,4 @@ public class Ch14Member {
 	private int menabled;
 	private String mrole;
 	
-
 }

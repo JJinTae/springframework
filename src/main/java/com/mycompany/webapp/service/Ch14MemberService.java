@@ -18,7 +18,7 @@ public class Ch14MemberService {
 		SUCCESS, FAIL, DUPLICATED
 	}
 	public enum LoginResult {
-		SUCCESS, FAIL, DISCORD_PASSWORD;
+		SUCCESS, FAIL, FAIL_MID, FAIL_MPASSWORD;
 	}
 
 	@Resource
@@ -53,11 +53,11 @@ public class Ch14MemberService {
 					return LoginResult.SUCCESS;
 				} else { 
 					// 아이디는 일치하나 패스워드 다름.
-					return LoginResult.DISCORD_PASSWORD;
+					return LoginResult.FAIL_MPASSWORD;
 				}
 			} else { 
 				// 로그인 아이디 일치 하지 않음.
-				return LoginResult.FAIL;
+				return LoginResult.FAIL_MID;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

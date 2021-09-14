@@ -199,6 +199,12 @@
 		    <version>2.0.6</version>
 		</dependency>
 				
+		<!-- log4jdbc/log4jdbc -->
+		<dependency>
+		    <groupId>com.googlecode.log4jdbc</groupId>
+		    <artifactId>log4jdbc</artifactId>
+		    <version>1.2</version>
+		</dependency>
 		
 		
 		<dependency>
