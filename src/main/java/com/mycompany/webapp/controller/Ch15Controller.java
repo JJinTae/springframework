@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -144,9 +145,20 @@ public class Ch15Controller {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
-		JSONArray jsonArray = new JSONArray();
 		
-		jsonObject.put("boards", boards);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		JSONArray jsonArray = new JSONArray();
+		for(Ch14Board board : boards) {
+			JSONObject boardObject = new JSONObject();
+			boardObject.put("bno", board.getBno());
+			boardObject.put("btitle", board.getBtitle());
+			boardObject.put("bdate", sdf.format(board.getBdate()));
+			boardObject.put("mid", board.getMid());
+			jsonArray.put(boardObject);
+		}
+		
+		jsonObject.put("boards", jsonArray);
 		String json = jsonObject.toString();
 		return json;
 	}

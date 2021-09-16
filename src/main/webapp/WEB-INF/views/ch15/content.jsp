@@ -41,7 +41,12 @@
 				$.ajax({
 					url:"boardList1"
 				}).done((data) => {
-					$("#boardList").html(data);
+					if(data.result == "authFail"){
+						window.location.href = "login";
+					} else{
+						$("#boardList").html(data);
+					}
+					
 				});
 			}
 			

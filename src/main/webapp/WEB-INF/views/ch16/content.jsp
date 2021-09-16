@@ -9,6 +9,11 @@
 		<div class="card">
 			<div class="card-header">계좌 현황</div>
 			<div class="card-body">
+				<c:if test="${transferError != null}">
+					<div class="alert alert-danger mb-2" role="alert">
+						${transferError}
+					</div>
+				</c:if>
 				
 				<table style="width:auto" class="table table-sm table-bordered">
 	               <tr>

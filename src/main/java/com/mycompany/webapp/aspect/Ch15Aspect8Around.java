@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
 import com.mycompany.webapp.controller.Ch15Controller;
 
 @Component
@@ -23,8 +24,24 @@ import com.mycompany.webapp.controller.Ch15Controller;
 public class Ch15Aspect8Around {
 	private static final Logger logger = LoggerFactory.getLogger(Ch15Controller.class);
 	
-	@Around("execution(public * com.mycompany.webapp.controller.Ch15Controller.board*(..))")	
-	public Object loginCheckAdvice(ProceedingJoinPoint joinPoint) throws Throwable{
+	@Around("execution(public * com.mycompany.webapp.controller.Ch15Controller.boardList1(..))")	
+	public Object loginCheckAdvice1(ProceedingJoinPoint joinPoint) throws Throwable{
+		// ----------------------------------
+		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpServletRequest request = sra.getRequest();
+		HttpSession session = request.getSession();
+		String mid = (String) session.getAttribute("sessionMid");
+		// ----------------------------------
+		if(mid == null) {
+			return "ch15/authFail";
+		} else {
+			Object result = joinPoint.proceed();
+			return result;
+		}
+	}
+	
+	@Around("execution(public * com.mycompany.webapp.controller.Ch15Controller.boardList2(..))")	
+	public Object loginCheckAdvice2(ProceedingJoinPoint joinPoint) throws Throwable{
 		// ----------------------------------
 		ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = sra.getRequest();
@@ -46,6 +63,5 @@ public class Ch15Aspect8Around {
 			Object result = joinPoint.proceed();
 			return result;
 		}
-		
 	}
 }

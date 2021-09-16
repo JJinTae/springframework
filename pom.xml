@@ -213,6 +213,35 @@
 		    <!-- <scope>runtime</scope> 생략 언제 실행할것인지를 설정 -->
 		</dependency>
 		
+		<!-- Spring Security Core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.5.1</version>
+		</dependency>
+		
+		<!-- spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.5.1</version>
+		</dependency>
+		
+		<!-- spring-security-config -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.5.1</version>
+		</dependency>
+		
+		<!-- spring-security-taglibs -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.5.1</version>
+		</dependency>
+		
+		
 		
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
