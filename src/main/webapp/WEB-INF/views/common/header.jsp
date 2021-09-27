@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <!DOCTYPE html>
@@ -30,14 +31,27 @@
 			</a>
 			<div>
 				<div>
-					<c:if test="${sessionMid != null }">
-						<%-- <a href="${pageContext.request.contextPath}/ch08/login" class="btn btn-success btn-sm">로그인</a> --%>
+					<sec:authorize access="isAnonymous()">
+						<a href="${pageContext.request.contextPath}/ch17/loginForm" class="btn btn-success btn-sm">로그인</a>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>
+						<%-- <a href="${pageContext.request.contextPath}/logout" class="btn btn-success btn-sm">로그아웃</a> --%>
+						
+						<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>
+						<form method="post" action="${pageContext.request.contextPath}/logout">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<button class="btn btn-info btn-sm">로그아웃</button>
+						</form>
+					</sec:authorize>
+					<%-- <c:if test="${sessionMid != null }">
+						<a href="${pageContext.request.contextPath}/ch08/login" class="btn btn-success btn-sm">로그인</a>
 						<a href="${pageContext.request.contextPath}/ch15/logout" class="btn btn-success btn-sm">로그아웃</a>
 					</c:if>
 					<c:if test="${sessionMid == null }">
-						<%-- <a href="${pageContext.request.contextPath}/ch08/logout" class="btn btn-success btn-sm">로그아웃</a> --%>
+						<a href="${pageContext.request.contextPath}/ch08/logout" class="btn btn-success btn-sm">로그아웃</a>
 						<a href="${pageContext.request.contextPath}/ch15/login" class="btn btn-success btn-sm">로그인</a>
-					</c:if>
+					</c:if> --%>
 				</div>
 			</div>
 		</nav>

@@ -15,22 +15,32 @@
 		<!-- 인증에서 성공했을 때 어떤 결과를 제출할지 -->
 		<!-- login-processing-url 우리가 직접 구현하는 부분이 아님 -->
 		<!-- authentication-failure-url -->
+		<!-- 
 		<security:form-login
 			login-page="/ch17/loginForm"
 			username-parameter="mid"
 			password-parameter="mpassword"
 			login-processing-url="/login" 
-			always-use-default-target="true"
+			always-use-default-target="false"
 			default-target-url="/ch17/content"
-			authentication-failure-url="/ch17/loginForm"
-			/>
+			authentication-failure-url="/ch17/loginForm"/>
+		-->
+		<security:form-login
+			login-page="/ch17/loginForm"
+			username-parameter="mid"
+			password-parameter="mpassword"
+			login-processing-url="/login"
+			authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-handler-ref="authenticationFailureHandler"/>
+		
 			
 		<!--  로그아웃 설정 정해져 있다.-->
 		<security:logout 
 			logout-url="/logout"
-			logout-success-url="/ch17/content"/>
+			success-handler-ref="logoutSuccessHandler"/>
 			
 		<!-- 사이트간 요청 위조 방지 비활성화 -->
+		<!-- false일 때 반드시 post 방식으로 요청해야한다.(_csrf의 토큰을 전달해야함) -->
 		<security:csrf disabled="true"/>
 		<!-- 요청 권한 설정 쇼핑몰 관리 페이지 같은 경우 - 관리자만 접속-->
 		<security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
@@ -40,7 +50,21 @@
 		
 		<!-- 권한 없음일 경우 보여줄 페이지 설정 -->
 		<security:access-denied-handler error-page="/ch17/error403"/>
-		
+
+	<!-- 로그인 중복 방지를 위한 설정 -->
+	<security:session-management>
+		<!-- max-session: 최대 로그인 수 error-if-maximum-exceeded : true일 때 최대 수를 초과하게 
+			되면 error를 발생시키겠다. expired-url : 인증이 무효화된 페이지가 이동하는 페이지 -->
+		<!-- 이전 로그인 유효하게 만들기 -->
+		<!-- <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/> -->
+
+		<!-- 최종 로그인 유효하게 만들기 -->
+		<security:concurrency-control
+			max-sessions="1" 
+			error-if-maximum-exceeded="false" 
+			expired-url="/ch17/loginForm" />
+	</security:session-management>
+				
 	</security:http>
 	
 	<!-- 권한 계층 설정 - 기본 생성자가 없기 때문에 생성자를 주입해줘야 한다. -->
@@ -71,4 +95,22 @@
 								data-source-ref="dataSource"
 								users-by-username-query="SELECT mid, mpassword, menabled FROM member WHERE mid=?"
 								authorities-by-username-query="SELECT mid, mrole FROM member WHERE mid=?"/>
+								
+	
+	
+	<!-- 인증 성공 또는 실패시 실행되는 핸들러 객체 설정 -->
+	<bean id="authenticationSuccessHandler" class="com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler">
+		<property name="alwaysUseDefaultTargetUrl" value="false"/>
+		<property name="defaultTargetUrl" value="/"/>
+	</bean>
+	
+	<bean id="authenticationFailureHandler" class="com.mycompany.webapp.security.Ch17AuthenticationFailureHandler">
+		<!-- 리다이렉트로 페이지를 이동 -->
+		<property name="defaultFailureUrl" value="/ch17/loginForm"/>	
+	</bean>
+	
+	<bean id="logoutSuccessHandler" class="com.mycompany.webapp.security.Ch17LogoutSuccessHandler">
+		<!-- 로그아웃 성공시 리다이렉트 이동할 경로 -->
+		<property name="defaultTargetUrl" value="/ch16/content"/>
+	</bean>
 </beans>
